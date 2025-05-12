@@ -1,0 +1,87 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="py-2">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="w-full">
+                    <div class="container mt-5">
+                        <div class="card mb-4 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <h2 class="h4 mb-4">Editar Tabela de Preços</h2>
+
+                                <form action="{{ route('price-tables.update', $priceTable) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-md-8">
+                                            <div class="form-floating">
+                                                <input type="text" name="name" id="name" class="form-control"
+                                                    value="{{ $priceTable->name }}" required placeholder="Nome da Tabela">
+                                                <label for="name">Nome da Tabela</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-check form-switch">
+                                                <input type="checkbox" name="is_active" id="is_active"
+                                                    class="form-check-input" role="switch" value="1"
+                                                    {{ $priceTable->is_active ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="is_active">Tabela Ativa</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <textarea name="description" id="description" class="form-control" style="height: 100px" placeholder="Descrição">{{ $priceTable->description }}</textarea>
+                                            <label for="description">Descrição</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mb-4">
+                                        <div class="card-header bg-light">
+                                            <h5 class="mb-0">Produtos e Preços</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Produto</th>
+                                                            <th>Preço (R$)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($products->sortBy('title') as $product)
+                                                            <tr>
+                                                                <td>{{ $product->title }}</td>
+                                                                <td>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-text">R$</span>
+                                                                        <input type="number" name="prices[]"
+                                                                            class="form-control price-input" step="0.01"
+                                                                            min="0"
+                                                                            value="{{ $priceTable->products->contains($product->id) ? number_format($priceTable->products->find($product->id)->pivot->price, 2, '.', '') : '' }}">
+                                                                        <input type="hidden" name="products[]"
+                                                                            value="{{ $product->id }}">
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endsection

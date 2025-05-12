@@ -1,0 +1,102 @@
+.filter-tree {
+
+  .tree-view {
+    ul {
+      list-style: none;
+      padding-left: 0;
+
+      &:not(.subcategories) {
+        >li {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    li {
+      position: relative;
+      color: $primary;
+      font-size: 1.15rem;
+
+      label {
+        cursor: pointer;
+      }
+
+      .expand-button {
+        display: inline-block;
+        position: relative;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid $primary;
+        margin-left: 5px;
+
+        &::after {
+          content: "+";
+          position: absolute;
+          font-weight: bold;
+          width: 15px;
+          height: 15px;
+          bottom: 1px;
+          right: -1px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+      }
+
+      .subcategories {
+        margin-top: 0.25rem;
+        display: none;
+        margin-left: 30px;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: calc(100% - 12px);
+          background: $primary;
+          left: -15px;
+          bottom: 12px;
+
+        }
+
+        li {
+          font-size: 1rem;
+          margin-bottom: 0.25rem;
+          position: relative;
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 1px;
+            background: $primary;
+            left: -15px;
+            top: 11px;
+
+          }
+        }
+      }
+
+      &.expanded {
+        .subcategories {
+          display: block;
+        }
+
+        .expand-button {
+          &::after {
+            content: "-";
+          }
+        }
+      }
+    }
+
+  }
+
+  .btn.btn-default {
+    text-decoration: underline;
+  }
+}

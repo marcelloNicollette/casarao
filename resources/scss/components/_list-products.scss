@@ -1,0 +1,179 @@
+.list-products {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  
+  &.list-products-full {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .product {
+    .list-icons {
+      top: 15px;
+      right: 15px;
+
+      >li {
+        width: 25px;
+        height: 25px;
+        position: inherit;
+
+        .icon {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: none;
+          background: no-repeat center;
+          background-size: contain;
+          z-index: 12;
+          width: 25px;
+          height: 25px;
+          position: absolute;
+
+          &.favorite {
+            transform: scale(1.15);
+            background-image: url(/resources/images/icons/heart/favorite-dark-outline.svg);
+
+            &.show {
+              background-image: url(/resources/images/icons/heart/favorite-red.svg);
+            }
+          }
+
+          &.checkout {
+            background-image: url(/resources/images/icons/checkout/checkout-dark-outline.svg);
+
+            &.show {
+              background-image: url(/resources/images/icons/checkout/checkout-red.svg);
+            }
+          }
+
+          &::after {
+            content: none;
+          }
+        }
+
+        .dropdown-menu {
+          inset: 0px 0px 0px 0px !important;
+          transform: translate(0, 0) !important;
+          border: 0;
+          background: $gray-300;
+          z-index: 11;
+
+          .content-dropdown {
+            overflow-y: scroll;
+            h6 {
+              font-size: 0.75rem;
+            }
+
+            .list-colors {
+              .color {
+                width: 25px;
+                height: 25px;
+                cursor: pointer;
+
+                &.active {
+                  border-color: $primary !important;
+                }
+              }
+            }
+
+            .form-select {
+              font-size: 0.7rem;
+              border: 1px solid $primary;
+              
+              &:not(.select-favorites) {
+                display: none;
+              }
+            }
+
+            .tamanho {
+              display: none;
+            }
+
+            .list-items {
+              display: none;
+              .item {
+                display: inline-flex;
+                margin: 0.1rem;
+                padding: 0.1rem;
+                background: $white;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                font-size: 0.7rem;
+                width: 40px;
+                border-radius: 20px;
+                color: $primary;
+                cursor: pointer;
+                
+                &.active {
+                  background: $primary;
+                  color: $white;
+                }
+              }
+            }
+
+            .list-footer {
+              * {
+                flex: 1;
+              }
+
+              .form-control {
+                border: 1px solid $primary;
+                font-size: 0.6rem;
+                padding: 2px 5px;
+                color: $primary;
+              }
+
+              .btn {
+                font-size: 0.6rem;
+              }
+            }
+
+            &::-webkit-scrollbar {
+              width: 3px;
+            }
+  
+            &::-webkit-scrollbar-track {
+              background: transparent;
+            }
+  
+            &::-webkit-scrollbar-thumb {
+              background: $primary;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  .name-product{
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 1080px) and (max-width: 1380px){
+  .list-products {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    &.list-products-full {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  }
+@include media-breakpoint-down(xl) {
+  .list-products {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    &.list-products-full {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .list-products {
+    grid-template-columns: 1fr 1fr;
+
+    &.list-products-full {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

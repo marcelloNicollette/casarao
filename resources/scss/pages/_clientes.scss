@@ -1,0 +1,17 @@
+section.section-inicio {
+  .list-clientes {
+    .form-check {
+      min-width: 150px;
+      padding: 0.25rem;
+      text-align: left;
+      .form-check-input {
+        width: 1.15rem;
+        height: 1.15rem;
+      }
+      .form-check-label {
+        color: $primary;
+        font-size: 1.15rem;
+      }
+    }
+  }
+}
