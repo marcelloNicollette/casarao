@@ -1,0 +1,31 @@
+@import 'bootstrap/scss/functions',
+'./custom/variables',
+'bootstrap/scss/bootstrap';
+
+@import './custom/default',
+'./custom/header';
+
+@import './pages/login',
+'./pages/inicio',
+'./pages/clientes',
+'./pages/planograma',
+'./pages/produto';
+
+@import './components/item-content',
+'./components/subheader',
+'./components/filter-tree',
+'./components/list-products';
+
+main {
+  /*background: #F7F7F7;*/
+
+  &.bg-red {
+    background-color: $red-100;
+  }
+}
+.btn-primary {
+  --bs-btn-active-bg: #ff3533ba;
+}
+.cta-logout{
+  right: 0;
+}

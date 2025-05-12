@@ -1,0 +1,78 @@
+.item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 3px 5px;
+
+  .content {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+
+    img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      object-position: center;
+    }
+    .title {
+      font-size: 0.75rem;
+      flex: 1;
+    }
+    .color, .size, .grid {
+      display: flex;
+      flex-direction: column;
+
+      .title-color, .title-size, .title-grid{
+        font-size: 0.65rem;
+        font-weight: bold;
+        text-align: center;
+        color: $primary;
+      }
+      .title-grid-cor{
+        text-align: left;
+      }
+      .show-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+
+      .show-size, .show-grid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 20px;
+        background: $primary;
+        color: $white;
+        font-size: 0.7rem;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .dados {
+    display: flex;
+    align-items: center;
+    .form-control {
+      border: 1px solid $primary;
+      font-size: 0.6rem;
+      padding: 2px 5px;
+      max-width: 113px;
+      color: $primary;
+    }
+    .btn {
+      font-size: 0.65rem;
+      font-weight: bold;
+      color: $primary;
+    }
+  }
+
+  &:nth-child(2n+1) {
+    background: #f9f9f9;
+  }
+}

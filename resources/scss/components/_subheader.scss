@@ -1,0 +1,121 @@
+.sub-header {
+  background: $white;
+
+  .slide-categorias {
+    max-width: 60%;
+
+    .swiper {
+      .swiper-wrapper {
+        min-height: 0;
+
+        .btn {
+          --bs-btn-padding-x: 0.2rem;
+          width: 100%;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .icons {
+    min-width: 250px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    .dropdown {
+      .dropdown-menu {
+        inset: auto !important;
+        left: auto !important;
+        right: 0 !important;
+        transform: translate(0px, 20px) !important;
+        padding: 1rem;
+        min-width: 240px;
+        border-radius: 20px;
+        border-color: #FF0200;
+
+        .link-sm {
+          font-size: 0.85rem;
+          text-decoration: none;
+        }
+      }
+    }
+
+    a.icon {
+      text-decoration: none;
+      position: relative;
+      margin-left: 40px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        left: -30px;
+        background: no-repeat center;
+        background-size: contain;
+      }
+
+      &.icon-xls::before {
+        background-image: url(/resources/images/icons/file-excel-regular.svg);
+      }
+
+      &.icon-pdf::before {
+        background-image: url(/resources/images/icons/file-pdf-regular.svg);
+      }
+    }
+  }
+}
+
+a.icon {
+  text-decoration: none;
+  position: relative;
+  /*margin-left: 40px;*/
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: -30px;
+    background: no-repeat center;
+    background-size: contain;
+  }
+
+  &.icon-xls::before {
+    background-image: url(/resources/images/icons/file-excel-regular.svg);
+  }
+
+  &.icon-pdf::before {
+    background-image: url(/resources/images/icons/file-pdf-regular.svg);
+  }
+}
+
+@include media-breakpoint-down(xxl) {
+  .sub-header {
+    .slide-categorias {
+      max-width: 60%;
+
+      .btn {
+        --bs-btn-padding-x: 0.5rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(xl) {
+  .sub-header {
+    .slide-categorias {
+      max-width: 60%;
+    }
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .sub-header {
+    .slide-categorias {
+      max-width: 100%;
+    }
+  }
+}

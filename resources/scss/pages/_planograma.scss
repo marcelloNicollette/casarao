@@ -1,0 +1,205 @@
+section#planograma {
+  .btn-duvida {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .list-favorites {
+    grid-template-columns: 1fr 1fr;
+    max-height: 68vh;
+    overflow-y: scroll;
+    padding: 0.25rem;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $primary;
+    }
+
+    .item-favorite {
+      cursor:move;
+      line-height: 1rem;
+      font-size: 0.9rem;
+
+      
+
+
+      .icon-favorite {
+        width: 20px;
+        height: 20px;
+        top: 5px;
+        right: 5px;
+        z-index: 1;
+        background: url(/resources/images/icons/heart/favorite-red.svg) no-repeat center;
+        background-size: contain;
+      }
+    }
+    .img-favorite {
+        background: no-repeat center;
+        background-size: contain;
+        
+        &.ratio-4x4 {
+          --bs-aspect-ratio: 100%;
+        }
+      }
+    .bg_red{
+      /*background: red;*/
+      opacity: .2;
+
+      .text-primary{
+        color: #000 !important;
+      }
+    }
+
+  }
+
+  .list-buttons {
+    grid-template-columns: 1fr 1fr;
+
+    .btn {
+      line-height: 1rem;
+      min-height: 55px;
+
+      &.active {
+        background: #f86e6e;
+      }
+    }
+  }
+
+  .icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    a.icon {
+      text-decoration: none;
+      position: relative;
+      margin-left: 40px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        left: -30px;
+        background: no-repeat center;
+        background-size: contain;
+      }
+
+      &.icon-xls::before {
+        background-image: url(/resources/images/icons/file-excel-regular.svg);
+      }
+
+      &.icon-pdf::before {
+        background-image: url(/resources/images/icons/file-pdf-regular.svg);
+      }
+    }
+  }
+
+  .show-planograma {
+    border: 1px solid $primary;
+    overflow: hidden;
+    min-height: calc(100vh - 70px - 3rem);
+
+    .img-logo {
+      width: 100%;
+      height: 60px;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .body-planograma {
+      background: #e0e0e0;
+      padding: 1.5rem;
+      flex: 1;
+
+      &.is-dragging {
+        .item-planograma {
+          background-color: $success;
+          border-radius: 10px;
+        }
+      }
+
+      .item-planograma {
+        width:100%;
+        height: 100%;
+        padding: 1rem;
+        background: url(/resources/images/icons/gancho.png) no-repeat center top;
+        background-size: auto 40px;
+        position: relative;
+
+        img {
+          width: 100%;
+          height: 100px;
+          object-fit: contain;
+          object-position: center;
+        }
+
+        > .btn {
+          width: 25px;
+          height: 25px;
+          left: 50% !important;
+          transform: translateX(150%);
+        }
+      }
+
+      &.premium-3-ganchos {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+      &.premium-9-ganchos {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+      &.premium-15-ganchos {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+      }
+      &.premium-15-x5x3-ganchos {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+      &.vip-4-ganchos {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      }
+      &.vip-10-ganchos {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+      }
+      &.vip-12-ganchos {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      }
+      &.vip-15-ganchos {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+      }
+      &.vip-20-ganchos {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+      }
+      &.vip-25-ganchos {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+      }
+      &.sem-display {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      }
+      &.vip-4-alturas {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      }
+    }
+  }
+}

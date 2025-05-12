@@ -1,0 +1,48 @@
+@import "swiper/css",
+"swiper/css/bundle",
+"swiper/css/navigation",
+"swiper/css/pagination",
+"swiper/css/thumbs",
+"swiper/css/free-mode";
+
+.swiper {
+  margin: 0 1rem;
+
+  .swiper-wrapper {
+    min-height: 100px;
+  }
+
+}
+
+.swiper-pagination {
+  --swiper-pagination-bullet-size: 14px;
+  position: relative;
+  margin-top: 1rem;
+
+  .swiper-pagination-bullet {
+    border: 2px solid $primary;
+    background: none;
+    opacity: 1;
+
+    &.swiper-pagination-bullet-active {
+      background: $primary;
+    }
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  right: -0.25rem;
+  --swiper-navigation-size: 35px;
+  background: url(/resources/images/icons/caret-right-solid.svg) no-repeat center;
+  background-size: contain;
+
+  &::after {
+    content: none;
+  }
+}
+
+.swiper-button-prev {
+  left: -0.25rem;
+  background-image: url(/resources/images/icons/caret-left-solid.svg);
+}
