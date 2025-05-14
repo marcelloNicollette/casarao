@@ -13,6 +13,11 @@
                                         <h1 class="display-6 mb-1">Pedidos</h1>
                                         <p class="text-muted mb-0">Lista de todos os pedidos realizados</p>
                                     </div>
+                                    <div>
+                                        <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                                            <i class="fas fa-arrow-left me-2"></i>Voltar
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

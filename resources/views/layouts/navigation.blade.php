@@ -15,12 +15,12 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                    <!--<x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
                         {{ __('Categorias de Produtos') }}
                     </x-nav-link>
                     <x-nav-link :href="route('product-line.index')" :active="request()->routeIs('product-line.index')">
                         {{ __('Linha dos Produto') }}
-                    </x-nav-link>
+                    </x-nav-link>-->
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Produtos') }}
                     </x-nav-link>
@@ -32,6 +32,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('products.index')">
                         {{ __('Clientes') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.pedidos.index')" :active="request()->routeIs('admin.pedidos.index')">
+                        {{ __('Pedidos') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -93,7 +96,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @if(Auth::guard('colaborador')->check())
+            @if (Auth::guard('colaborador')->check())
                 <x-responsive-nav-link :href="route('colaborador.dashboard')" :active="request()->routeIs('colaborador.dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>

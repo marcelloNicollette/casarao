@@ -17,15 +17,16 @@ use Illuminate\Routing\Middleware\ValidateSignature;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ColaboradorPedidosController;
 use App\Http\Controllers\PedidosController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 // Redirecionamento baseado no perfil
 // Linha 18 corrigida
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
-    $user = auth()->user();
+    $user = Auth::user();
 
     if ($user->role === 'admin') {
         return redirect()->route('admin.dashboard');
@@ -36,7 +37,7 @@ Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
     }
 
     // Se não for nenhum dos dois, redireciona para uma página padrão
-    return redirect()->route('welcome');
+    return redirect()->route('login');
 })->name('dashboard');
 
 // Rotas de perfil
