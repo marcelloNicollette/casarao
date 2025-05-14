@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
+main {
+    /*background: #F7F7F7;*/
+  
+    &.bg-red {
+      background-color: #ff3533ba;
+    }
+  }
+  .btn-primary {
+    --bs-btn-active-bg: #ff3533ba;
+  }
+  .cta-logout{
+    right: 0;
+  }
+  
 .bg-login{
     background: url("../images/bg-login.jpg");
     background-size: cover;
