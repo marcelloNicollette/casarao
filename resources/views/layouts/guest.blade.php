@@ -14,6 +14,13 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        .bg-login {
+            background: url("../images/bg-login.jpg");
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
