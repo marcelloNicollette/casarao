@@ -17,7 +17,7 @@
 
     <style>
         .bg-login {
-            background: url("../images/bg-login.jpg");
+            background: url("images/bg-login.jpg");
             background-size: cover;
         }
     </style>
