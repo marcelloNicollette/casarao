@@ -8,4 +8,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    resolve: {
+        alias: {
+            crypto: 'crypto-browserify'
+        }
+    }
 });
