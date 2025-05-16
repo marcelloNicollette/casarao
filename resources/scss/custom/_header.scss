@@ -1,5 +1,5 @@
 .header {
-  --#{$prefix}dark-rgb: #{to-rgb($primary)};
+  --#{$prefix}dark-rgb: #{to-rgb(#29c4a9)};
 
   .logo {
     max-height: 40px;
@@ -30,16 +30,16 @@
           margin-top: 13px;
           border-top: none;
           border-radius: 0 0 20px 20px;
-          border-color: $primary;
+          border-color: #29c4a9;
           min-width: 320px;
 
           h2 {
-            color: $primary;
+            color: #29c4a9;
             font-weight: bold;
           }
 
           h4.title {
-            color: $primary;
+            color: #29c4a9;
             font-weight: bold;
           }
 
@@ -126,7 +126,7 @@
         padding: 1rem 1.25rem 1.25rem;
         border-top: none;
         border-radius: 0 0 20px 20px;
-        border-color: $primary;
+        border-color: #29c4a9;
 
         &.dropdown-large {
           min-width: 500px;
@@ -137,7 +137,7 @@
           justify-content: space-between;
 
           .title {
-            color: $primary;
+            color: #29c4a9;
             display: flex;
             flex-direction: column;
 
@@ -198,7 +198,7 @@
           }
 
           &::-webkit-scrollbar-thumb {
-            background: $primary;
+            background: #29c4a9;
           }
         }
 
@@ -277,12 +277,12 @@
             min-width: auto;
 
             h2 {
-              color: $primary;
+              color: #29c4a9;
               font-weight: bold;
             }
 
             h4.title {
-              color: $primary;
+              color: #29c4a9;
               font-weight: bold;
             }
 
