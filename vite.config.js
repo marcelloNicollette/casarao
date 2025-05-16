@@ -3,7 +3,6 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import { webcrypto } from 'crypto';
 
-//Garante que getRandomValues esteja disponível no ambiente Node
 if (typeof globalThis.crypto === 'undefined') {
     globalThis.crypto = webcrypto;
 }
@@ -11,8 +10,30 @@ if (typeof globalThis.crypto === 'undefined') {
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                'resources/css/app.css',
+                'resources/js/app.js',
+            ],
             refresh: true,
+            publicDirectory: 'public',
         }),
-    ]
+    ],
+    build: {
+        outDir: 'public/build',
+        manifest: true,
+        rollupOptions: {
+            output: {
+                manualChunks: undefined
+            }
+        }
+    },
+    server: {
+        host: true,
+        hmr: {
+            host: 'localhost'
+        }
+    },
+    css: {
+        devSourcemap: true
+    }
 });
