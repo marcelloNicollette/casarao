@@ -11,6 +11,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                'resources/scss/front.scss',
                 'resources/css/app.css',
                 'resources/js/app.js',
             ],
@@ -35,5 +36,11 @@ export default defineConfig({
     },
     css: {
         devSourcemap: true
-    }
+    },
+    resolve: {
+        alias: {
+            '@': '/resources',
+            '~': '/public'
+        }
+    },
 });
