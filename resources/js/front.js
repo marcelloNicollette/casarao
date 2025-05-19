@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
   new SwiperProduct();
   new Product();
   new ProductList();
-  new PdfCheckout();
-  new PdfWishlist();
+  //new PdfCheckout();
+  //new PdfWishlist();
   //new PdfPlanograma();
   numberCheckout();
 

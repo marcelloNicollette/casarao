@@ -116,7 +116,7 @@ export default class ProductList {
   async registerOrderApi(orders) {
       try {
           this.loadingButton(true, this.btnFinalizar);
-          const response = await fetch(import.meta.env.VITE_URL_FINALIZAR_PREPEDIDO, {
+          const response = await fetch("/public"+import.meta.env.VITE_URL_FINALIZAR_PREPEDIDO, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',

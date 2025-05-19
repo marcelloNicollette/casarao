@@ -8,25 +8,22 @@ if (typeof globalThis.crypto === 'undefined') {
 }
 
 export default defineConfig({
+    base: '/public/build/', // <- define o caminho base correto
     plugins: [
         laravel({
             input: [
                 'resources/scss/front.scss',
+                'resources/js/front.js',
                 'resources/css/app.css',
                 'resources/js/app.js',
             ],
             refresh: true,
-            publicDirectory: 'public',
         }),
     ],
     build: {
         outDir: 'public/build',
         manifest: true,
-        rollupOptions: {
-            output: {
-                manualChunks: undefined
-            }
-        }
+        emptyOutDir: true,
     },
     server: {
         host: true,
