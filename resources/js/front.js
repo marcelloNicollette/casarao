@@ -1,4 +1,8 @@
-// import './bootstrap';
+import './bootstrap';
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+Alpine.start();
+
 import "bootstrap/js/dist/modal";
 import { Dropdown, Collapse, Tooltip } from "bootstrap";
 
@@ -8,9 +12,7 @@ import SwiperProductList from "./components/SwiperProductList";
 import TreeView from "./components/TreeView";
 import SwiperProduct from "./components/SwiperProduct";
 import Product from "./components/Product";
-import ProductList from "./components/ProductList";
-import PdfCheckout from "./components/pdfCheckout";
-import PdfWishlist from "./components/PdfWishlist";
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const dropdownElementList = document.querySelectorAll('.dropdown-toggle')
@@ -25,11 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const swiper = new SwiperProductList();
   new SwiperProduct();
   new Product();
-  new ProductList();
-  //new PdfCheckout();
-  //new PdfWishlist();
-  //new PdfPlanograma();
-  numberCheckout();
+    
 
   const productElements = document.querySelectorAll('.product');
   productElements.forEach((productElement, index) => {
@@ -38,15 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //new ProductForm(productElement, "form-add-favorite", false);
   });
 
-  const productInner = document.getElementById("show-product");
+  //const productInner = document.getElementById("show-product");
   //new FavoritesManager(productInner, "form-add-favorite", "Criar");
   
 });
-
-function numberCheckout() {
-    
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-  //console.log(orders.length);
-
-  $('.cta-number-whilistis').html(orders.length);
-}

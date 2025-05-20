@@ -15,7 +15,7 @@ export default defineConfig({
                 'resources/scss/front.scss',
                 'resources/js/front.js',
                 'resources/css/app.css',
-                'resources/js/app.js',
+                //'resources/js/app.js',
             ],
             refresh: true,
         }),

@@ -2,7 +2,11 @@ import ToastInit from "./Toast";
 
 export default class ProductList {
   constructor(idContent = "checkout-content", storageKey = "shoppingCart", listenerEventKey = "productAdded", isCheckout = true) {
-    localStorage.getItem('shoppingCart');
+    // Garante que o localStorage sempre tenha um valor válido
+    if (!localStorage.getItem(storageKey)) {
+        localStorage.setItem(storageKey, JSON.stringify([]));
+    }
+    console.log('ProductList init');
     this.checkoutContent = document.getElementById(idContent);
 
     if (this.checkoutContent) {
@@ -38,41 +42,49 @@ export default class ProductList {
     }
   }
 
-  // renderFavoriteItem() {
-  //   const itemContent = document.createElement('div');
-  //   itemContent.classList.add('item-content', 'mb-2');
-
-  //   itemContent.innerHTML = `
-  //     <div class="content">
-  //       <img src="${order.image}" class="img-product" alt="${order.title}" />
-  //       <div class="title">${order.title}</div>
-  //     </div>
-  //     <div class="dados">
-  //       <a href="#" class="btn btn-sm">Remover</a>
-  //     </div>
-  //   `;
-
-  //   this.checkoutContent.appendChild(itemContent);
-
-  //   // Adicionar listener para o botão de remover
-  //   const btnRemover = itemContent.querySelector('.dados .btn');
-  //   btnRemover.addEventListener('click', () => {
-  //     this.removeItemFromLocalStorage(index);
-  //     this.removeOrderItem(itemContent);
-  //   });
-  // }
-
   renderOrderItem(order, index) {
     const itemContent = document.createElement('div');
     itemContent.classList.add('item-content', 'mb-2');
 
-    itemContent.innerHTML = ``;
+    const subTotal = order.hiddenFields.price * order.quantidade;
+    
+    itemContent.innerHTML = `
+        <div class="content">
+            <img src="./images/logo.png" class="img-product" alt="${order.hiddenFields.name}">
+            <div class="title">${order.hiddenFields.name}</div>
+            <div class="price text-center" style="font-size:.75rem; font-weight:bold;">
+                R$ ${Number(order.hiddenFields.price).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} 
+                x ${order.quantidade} = 
+                R$ ${Number(subTotal).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </div>
+            <div class="details">
+                <p>Cor: ${order.color}</p>
+                <p>Tamanho: ${order.tamanho}</p>
+                <p>Tipo: ${order.caixaOption} - ${order.caixaSelecionada}</p>
+            </div>
+        </div>
+        <div class="dados">
+            <input type="text" placeholder="QUANTIDADE" class="form-control" value="Quantidade: ${order.quantidade}" disabled>
+            <a href="#" class="btn btn-sm btn-remove">Remover</a>
+        </div>
+    `;
 
     this.checkoutContent.appendChild(itemContent);
 
     // Adicionar listener para o botão de remover
-    
-  }
+    const removeButton = itemContent.querySelector('.btn-remove');
+    removeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.removeItemFromLocalStorage(index);
+        this.removeOrderItem(itemContent);
+        
+        // Verificar se não há mais itens
+        const orders = JSON.parse(localStorage.getItem(this.storageKey)) || [];
+        if (orders.length === 0) {
+            this.checkoutContent.innerHTML = `<p class="text-primary text-center">Nenhum produto adicionado</p>`;
+        }
+    });
+}
 
   addLocalStorageListener() {
     window.addEventListener(this.listenerEventKey, () => {
@@ -86,13 +98,19 @@ export default class ProductList {
     orders.splice(index, 1);
     localStorage.setItem(this.storageKey, JSON.stringify(orders));
     this.numberCheckout();
-  }
+    
+    // Disparar evento para atualizar a interface
+    const productAddedEvent = new Event(this.listenerEventKey);
+    window.dispatchEvent(productAddedEvent);
+}
 
   numberCheckout() {
     const orders = JSON.parse(localStorage.getItem(this.storageKey)) || [];  
-    //console.log(orders.length);
-    $('.cta-number-whilistis').html(orders.length);
-  }
+    const cartCounter = document.querySelector('.cta-number-whilistis');
+    if (cartCounter) {
+        cartCounter.textContent = orders.length;
+    }
+}
 
   removeOrderItem(itemContent) {
     this.checkoutContent.removeChild(itemContent);
@@ -116,7 +134,7 @@ export default class ProductList {
   async registerOrderApi(orders) {
       try {
           this.loadingButton(true, this.btnFinalizar);
-          const response = await fetch("/public"+import.meta.env.VITE_URL_FINALIZAR_PREPEDIDO, {
+          const response = await fetch(import.meta.env.VITE_URL_FINALIZAR_PREPEDIDO, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -130,18 +148,17 @@ export default class ProductList {
          
           if (response.ok) {
               if (responseData.status === 'success') {
-                  // Remove completamente os dados do localStorage
-                  localStorage.removeItem('shoppingCart');
-                  localStorage.removeItem('orders');
+                  // Limpa completamente o localStorage
+                  localStorage.clear();
+                  
+                  // Define explicitamente um array vazio
+                  localStorage.setItem(this.storageKey, JSON.stringify([]));
                   
                   // Força a limpeza do objeto items
                   this.items = [];
                   
                   ToastInit.showToast('Pré-pedido registrado com sucesso!', { bodyClass: 'text-bg-success' });
           
-                  // Aguarda um pequeno intervalo para garantir que o localStorage seja limpo
-                  await new Promise(resolve => setTimeout(resolve, 5000));
-                  
                   // Atualiza o contador
                   this.numberCheckout();
                   
@@ -149,8 +166,11 @@ export default class ProductList {
                   const productAddedEvent = new Event('productAdded');
                   window.dispatchEvent(productAddedEvent);
                   
+                  // Aguarda a conclusão das operações antes de recarregar
+                  await new Promise(resolve => setTimeout(resolve, 1000));
+                  
                   // Força um novo carregamento da página sem cache
-                  window.location.replace(window.location.href);
+                  window.location.href = window.location.href.split('?')[0] + '?t=' + new Date().getTime();
               }
               else {
                   ToastInit.showToast(responseData.message, { bodyClass: 'text-bg-danger' })
